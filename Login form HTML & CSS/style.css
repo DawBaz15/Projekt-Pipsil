@@ -1,0 +1,126 @@
+:root{
+    --color-dark:red;
+    --color-light: rgba(0, 255, 98, 0.514);
+}
+
+
+
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+body {
+    align-items: center;
+background: linear-gradient(
+    to top right,
+    var(--color-dark),
+    var(--color-light)
+);
+    display: flex;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    height: 100vh;
+    justify-content: center;
+    width: 100vw;
+}
+
+form {
+    background: linear-gradient(
+        to left,
+        rgba(255,255,255,0.05),
+        rgb(255,255,255,0.35)
+    );
+        
+        border-radius: 15px;
+        box-shadow: 0px 8px 24px 0 rgba(0,0,0,0.3);
+        max-width: 300px;
+    padding: 36px 24px;
+    text-align: center;
+}
+
+.form_input-container {
+   position: relative;
+   margin-bottom: 32px; 
+}
+
+input,
+button {
+    background: linear-gradient(
+        to left,
+        rgba(255,255,255,0.1),
+        rgb(255,255,255,0.25)
+    );
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0px 8px 24px 0 rgba(0,0,0,0.3);
+    color:rgb(255,255,255);
+    padding: 12px 24px; 
+    font-size: 24px;
+    transition: box-shadow 0.3s,outline 0.3s;
+}
+
+label {
+    color:rgb(255,255,255);
+    position : absolute;
+    left: 24px;
+    top :50%;
+    transform: translateY(-50%);
+    opacity: 1;
+    transition: left 0.5s,opacity 0.5s;
+    font-style: italic;
+    cursor: text;
+}
+
+input {
+width: 100%;
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label
+ {
+left : 200px;
+opacity :0;
+}
+
+input:hover,
+button:hover{
+    box-shadow: 0px 8px 12px 0 rgba(0,0,0,0.3);
+}
+
+input:focus,
+button:focus{
+    outline: solid 3px rgba(255,255,255,0.8);
+}
+
+
+
+button{
+ cursor: pointer;
+ overflow: hidden;
+ position: relative;
+}
+
+button:after{
+    background: rgb(255,255,255,0.5);
+    content: "";
+    display:block;
+    height: 100px;
+    left : -70px;
+    position:absolute;
+    top :-50%;
+    transform: skewX(-15deg);
+    transition: left 0.15s linear;
+    width: 50px;
+}
+
+
+button:hover:after
+{
+    left : 110%;
+}
+
+
