@@ -1,0 +1,79 @@
+﻿@page "/game"
+@model WebApplication1.Pages.gamesettingsModel
+@{
+}
+
+<div id="game_options" class="lead">
+	<form>
+	<div id="language">
+		<p>SELECT LANGUAGES:</p>
+		<select name="language1" id="lang1">
+			<option value="en">English</option>
+			<option value="pl">Polish</option>
+			<option value="ge">German</option>
+		</select>
+		-
+		<select name="language2" id="lang2">
+			<option value="pl">Polish</option>
+			<option value="en">English</option>
+			<option value="ge">German</option>
+		</select>
+		<p id="info" style="color:white;"></p>
+	</div>
+	<div id="number">
+		<p>SELECT NUMBER OF QUESTIONS:</p>
+		<select name="number" id="num">
+			<option value="3">3</option>
+			<option value="4">4</option>
+		</select>
+	</div>
+	<div id="modules">
+		<hr style="height:5px;color:black;">
+		<div class="module_capsule">
+			<img src="Images/bodyparts.png" onClick="Redirect(1)">
+			<text>Body Parts</text>
+		</div>
+		<div class="module_capsule">
+			<img src="Images/food.png" onClick="Redirect(2)">
+			<text>Food&Drinks</text>
+		</div>
+		<div class="module_capsule">
+			<img src="Images/animals.png" onClick="Redirect(3)">
+			<text>Animals</text>
+		</div>
+		<div class="module_capsule">
+			<img src="Images/jobs.png" onClick="Redirect(4)">
+			<text>Jobs</text>
+		</div>
+		<div class="module_capsule">
+			<img src="Images/places.png" onClick="Redirect(5)">
+			<text>Places</text>
+		</div>
+		<div class="module_capsule">
+			<img src="Images/sports.png" onClick="Redirect(6)">
+			<text>Sports</text>
+		</div>
+		<div class="module_capsule">
+			<img src="Images/vehicles.png" onClick="Redirect(7)">
+			<text>Vehicles</text>
+		</div>
+		<div class="module_capsule">
+			<img src="Images/IT.png" onClick="Redirect(8)">
+			<text>IT</text>
+		</div>
+	</div>
+	</form>
+</div>
+
+<script>
+	function Redirect(module) {
+		lang1 = document.getElementById("lang1").value;
+		lang2 = document.getElementById("lang2").value;
+		num = document.getElementById("num").value;
+		if (lang1 != lang2) {
+			window.location.href = "game/" + lang1 + "-" + lang2 + "/" + module + "/questions=" + num;
+		} else {
+			document.getElementById("info").innerHTML = "Please select two different languages.";
+		}
+	}
+</script>

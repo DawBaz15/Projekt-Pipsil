@@ -1,0 +1,40 @@
+﻿@page "/welcome"
+@model WebApplication1.Pages.WelcomeModel
+@{
+	Layout = "~/Pages/Shared/_GuestLayout.cshtml";
+}
+
+<div id="welcome_container1">
+	<div id="image">
+		<img src="Images/logo.png">
+	</div>
+	<div id="text" class="lead">
+		<h1>Make learning fun</h1>
+		<p>Begin your language learning adventure with LangApp, an interactive words matching game.</p>
+	</div>
+</div>
+<br />
+<a href="~/register" class="lead" id="joinnow">JOIN NOW FOR FREE</a>
+<br /><br /><br />
+<div id="welcome_container2">
+	<div id="section1">
+		<p class="lead">Learn a selection of languages including Polish, English and German</p>
+	</div>
+	<div id="section2">
+		<p class="lead">Choose one of the available modules that interest you</p>
+	</div>
+	<div id="section3">
+		<p class="lead">Easy to understand and quick to set up</p>
+	</div>
+</div>
+
+<script>
+	const observer = new IntersectionObserver(entries => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				document.querySelectorAll("#welcome_container2")[0].classList.add("FadeIn");
+			}
+		})
+	})
+	observer.observe(document.querySelector("#welcome_container2"))
+</script>

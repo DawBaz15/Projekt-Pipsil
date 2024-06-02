@@ -1,0 +1,31 @@
+﻿@page "/register"
+@model LangApp.Pages.registerpageModel
+@{
+	ViewData["Title"] = "Register";
+	Layout = "~/Pages/Shared/_SimpleLayout.cshtml";
+}
+
+<div class="form">
+<form autocomplete="off" method="POST">
+	<div class="form_input-container lead">
+			<input asp-for="@Model.Email" id="email" name="Email" type="email" required placeholder=" " autocomplete="off" />
+		<label for="email">E-mail address</label>
+	</div>
+	<div class="form_input-container lead">
+			<input asp-for="@Model.Name" id="name" name="Name" type="text" required placeholder=" " autocomplete="off" />
+		<label for="name">Name displayed</label>
+	</div>
+	<div class="form_input-container lead">
+			<input asp-for="@Model.Password1" id="password" name="Password1" type="password" required placeholder=" " autocomplete="off" />
+		<label for="password">Password</label>
+	</div>
+	<div class="form_input-container lead">
+			<input asp-for="@Model.Password2" id="password2" name="Password2" type="password" required placeholder=" " autocomplete="off" />
+		<label for="password">Reenter password</label>
+	</div>
+	<br />
+		<button class="lead">Register</button><br>
+		<label style="color:red" class="message lead" id="message" name="Message">@Model.Message</label>
+		<br><a class="lead" href="/login">Already have an account?</a>
+</form>
+</div>

@@ -1,0 +1,55 @@
+﻿@page "/account"
+@model WebApplication1.Pages.accountsettingsModel
+@{
+}
+
+<div id="settings_buttons" class="lead">
+	<text id="page1button" onClick="Page1()">Information</text>
+	<text id="page2button" onClick="Page2()"style="background-color:rosybrown;">Request Change</text>
+</div>
+<div id="settings_menu">
+	<div id="page1">
+		<br /><br />
+	<p class="lead">E-mail</p>
+	<p class="userinfo">@Model.Email</p>
+	<p class="lead">Name</p>
+	<p class="userinfo">@Model.Name</p>
+	<p class="lead">Join Date</p>
+	<p class="userinfo">@Model.Date</p>
+	</div>
+	<div id="page2" hidden>
+	<form autocomplete="off" method="POST">
+		<br />
+		<label style="color:red;width:100%;text-align:center;font-weight:bold;" class="message lead" id="message" name="Message">@Model.Message</label>
+		<p>Change password</p>
+		<div class="form_input-container lead">
+		<input asp-for="@Model.Password1" id="password1" name="Password1" type="password" required placeholder=" " autocomplete="off"/>
+		<label for="password1">Current password</label>
+		</div>
+		<div class="form_input-container lead">
+		<input asp-for="@Model.Password2" id="password2" name="Password2" type="password" required placeholder=" " autocomplete="off"/>
+		<label for="password2">New password</label>
+		</div>
+		<div class="form_input-container lead">
+		<input asp-for="@Model.Password3" id="password3" name="Password3" type="password" required placeholder=" " autocomplete="off"/>
+		<label for="password3">Reenter password</label>
+		</div><br />
+		<button class="lead">Request change</button><br>
+	</form>
+	</div>
+</div>
+
+<script>
+	function Page1() {
+		document.getElementById("page1").removeAttribute("hidden");
+		document.getElementById("page2").setAttribute("hidden", "true");
+		document.getElementById("page2button").style.backgroundColor = "rosybrown";
+		document.getElementById("page1button").style.backgroundColor = "brown";
+	}
+	function Page2() {
+		document.getElementById("page2").removeAttribute("hidden");
+		document.getElementById("page1").setAttribute("hidden", "true");
+		document.getElementById("page1button").style.backgroundColor = "rosybrown";
+		document.getElementById("page2button").style.backgroundColor = "brown";
+	}
+</script>

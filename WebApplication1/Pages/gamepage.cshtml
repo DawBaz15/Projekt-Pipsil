@@ -1,0 +1,84 @@
+﻿@page "/game/{lang1}-{lang2}/{module}/questions={num}"
+@model WebApplication1.Pages.gamepageModel
+@{
+	ViewData["Title"] = "Game";
+}
+
+<div id="game_window" onClick="NextRound()">
+<div id="game_question">
+<p id="word" hidden></p>
+</div>
+<div id="game_answers">
+<div id="game_buttons">
+<p id="information">CLICK ANYWHERE TO START</p>
+<button id="1" hidden></button>
+<button id="2" hidden></button>
+<button id="3" hidden></button>
+</div>
+</div>
+<div id="game_result" onclick="NextRound()">
+<p id="result"></p>
+<p id="next"></p>
+</div>
+</div>
+
+<script>
+	const jpass = "@Model.jpass";
+	const rounds = @Model.num;
+	const array = jpass.split(",");
+	var currentround = 0;
+	var points = 0;
+	
+	function NextRound() {
+		document.getElementById("result").innerHTML = "";
+		if (currentround == 0) {
+			document.getElementById("game_window").removeAttribute("onClick");
+			document.getElementById("game_question").style.backgroundColor = "skyblue";
+			document.getElementById("next").innerHTML = "CLICK HERE TO CONTINUE";
+			document.getElementById("information").innerHTML = "";
+			document.getElementById("word").removeAttribute("hidden");
+			document.getElementById("1").removeAttribute("hidden");
+			document.getElementById("2").removeAttribute("hidden");
+			document.getElementById("3").removeAttribute("hidden");
+		}
+		if (currentround < rounds) {
+				document.getElementById("game_result").style.backgroundColor = "powderblue";
+			document.getElementById("1").setAttribute("onClick", "Answer(this.id)");
+			document.getElementById("2").setAttribute("onClick", "Answer(this.id)");
+			document.getElementById("3").setAttribute("onClick", "Answer(this.id)");
+			document.getElementById("word").innerHTML = array[0 + currentround * 5];
+			document.getElementById("1").innerHTML = array[1 + currentround * 5];
+			document.getElementById("2").innerHTML = array[2 + currentround * 5];
+			document.getElementById("3").innerHTML = array[3 + currentround * 5];
+			document.getElementById("next").setAttribute("hidden", "true");
+		}
+		else {
+			document.getElementById("game_result").style.backgroundColor = "skyblue";
+			document.getElementById("1").setAttribute("hidden", "true");
+			document.getElementById("2").setAttribute("hidden", "true");
+			document.getElementById("3").setAttribute("hidden", "true");
+			document.getElementById("word").innerHTML = "END";
+			document.getElementById("information").innerHTML = "CLICK HERE TO PLAY AGAIN";
+			document.getElementById("next").innerHTML = "YOU ANSWERED "+points+" QUESTIONS CORRECTLY";
+			document.getElementById("game_answers").setAttribute("onClick", "Reset()");
+		}
+	}
+	function Answer(id) {
+		if ((parseInt(id) + (currentround * 5)) == array[4 + currentround * 5]) {
+			points++;
+			document.getElementById("result").innerHTML = "Correct";
+			document.getElementById("game_result").style.backgroundColor = "springgreen";
+		} else {
+				document.getElementById("result").innerHTML = "Incorrect<br>The correct answer was " + array[array[4 + currentround * 5]];
+			document.getElementById("game_result").style.backgroundColor = "indianred";
+		}
+		currentround++;
+		document.getElementById("1").removeAttribute("onClick");
+		document.getElementById("2").removeAttribute("onClick");
+		document.getElementById("3").removeAttribute("onClick");
+		document.getElementById("next").removeAttribute("hidden");
+	}
+	function Reset() {
+		location.reload();
+	}
+</script>

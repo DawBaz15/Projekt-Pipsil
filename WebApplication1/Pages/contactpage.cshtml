@@ -1,0 +1,18 @@
+﻿@page "/contact"
+@model WebApplication1.Pages.contactpageModel
+@{
+}
+
+<p class="lead">If you have any questions, suggestions or complaints feel free to contact us below.</p>
+<form autocomplete="off" method="POST">
+<div class="form_input-container lead">
+	<label for="subject">Subject</label><br />
+	<input asp-for="@Model.Subject" id="subject" name="Subject" type="text" required placeholder=" " maxlength="50"/>
+</div><br />
+<div class="form_input-container lead">
+	<label for="content">Content</label><br />
+	<textarea asp-for="@Model.Content" name="Content" maxlength="999" cols="120" rows="10"></textarea>
+</div>
+	<button id="contactbutton" class="lead">Send</button><br>
+	<label style="color:limegreen" class="message lead" id="message" name="Message">@Model.Notification</label>
+</form>

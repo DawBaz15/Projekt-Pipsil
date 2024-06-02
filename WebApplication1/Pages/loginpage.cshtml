@@ -1,0 +1,23 @@
+﻿@page "/login"
+@model LangApp.Pages.loginpageModel
+@{
+	ViewData["Title"] = "Login";
+	Layout = "~/Pages/Shared/_SimpleLayout.cshtml";
+}
+
+<div class="form">
+<form autocomplete="off" method="POST">
+	<div class="form_input-container lead">
+		<input asp-for="@Model.Email" id="email" name="Email" type="email" required placeholder=" " />
+		<label for="email">E-mail address</label>
+	</div>
+		<div class="form_input-container lead">
+		<input asp-for="@Model.Password" id="password" name="Password" type="password" required placeholder=" " />
+		<label for="password">Password</label>
+	</div>
+		<br />
+		<button class="lead">Login</button><br>
+		<label style="color:red" class="message lead" id="message" name="Message">@Model.Message</label>
+		<br><a class="lead" href="/register">Create a new account</a>
+</form>
+</div>
